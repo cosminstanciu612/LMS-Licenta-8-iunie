@@ -1,0 +1,17 @@
+body {
+    font-family: 'Merriweather', serif;
+    margin: 0;
+}
+
+.content {
+    margin: 50px 200px;
+}
+
+.grey {
+    color: #282828;
+}
+
+.container {
+    width: 1050px;
+    margin: 0 auto;
+}

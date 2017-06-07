@@ -1,0 +1,40 @@
+.user-name {
+    width: 50%;
+    font-size: 30px;
+    border-bottom: 2px solid #27ae60;
+    padding: 15px;
+}
+
+.user-details {
+    padding: 15px;
+    font-size: 20px;
+}
+
+.user-details td {
+    padding: 10px 20px;
+}
+
+.left-border-bold {
+    height: 150px;
+    width: 50px;
+    background-color: #27ae60;
+    float: left;
+    margin-right: 20px;
+}
+
+.subject {
+    font-size: 30px;
+    padding: 10px;
+}
+
+.short-description {
+    font-size: 18px;
+    padding: 10px;
+}
+
+.training-box {
+    height: 150px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin: 20px 0px;
+    min-width: 600px;
+}

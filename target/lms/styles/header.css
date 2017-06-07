@@ -1,0 +1,47 @@
+.logo {
+    float: left;
+    margin-left: 0px;
+}
+
+li.menu-link {
+    display: inline;
+}
+
+ul.nav-bar {
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+    float: right;
+    line-height: 225%;
+}
+
+.header {
+    height: 50px;
+    max-width: 1050px;
+    margin: 10px auto 0;
+
+}
+
+a {
+    text-decoration: none;
+    color: #282828;
+}
+
+.banner {
+    background-color: #26ade4;
+    width: 100%;
+    left: 0;
+    margin-bottom: 35px;
+    border-bottom: 5px solid #094f6b;
+}
+
+.page-title {
+    color: #ffffff;
+    width: 1050px;
+    margin: 0 auto;
+    font-size: 35px;
+}
+
+h1 {
+    margin: 0;
+}
