@@ -3,6 +3,7 @@ package ro.ubbcluj.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.ubbcluj.dao.MockDAO;
+import ro.ubbcluj.dao.TrainingDomainDAO;
 import ro.ubbcluj.domain.Training;
 import ro.ubbcluj.domain.TrainingDomain;
 import ro.ubbcluj.domain.User;
@@ -23,6 +24,9 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Autowired
     private MockDAO trainingDAO;
+
+    @Autowired
+    private TrainingDomainDAO trainingDomainDAO;
 
     public Training getTrainingById(int id) {
         return trainingDAO.getTrainingById(id);
@@ -101,10 +105,26 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     public List<TrainingDomain> getAllDomains() {
-        return trainingDAO.getAllDomains();
+        return trainingDomainDAO.getTrainingDomains();
     }
 
     public TrainingDomain getTrainingDomainById(int i) {
         return trainingDAO.getTrainingDomainById(i);
+    }
+
+    public MockDAO getTrainingDAO() {
+        return trainingDAO;
+    }
+
+    public void setTrainingDAO(MockDAO trainingDAO) {
+        this.trainingDAO = trainingDAO;
+    }
+
+    public TrainingDomainDAO getTrainingDomainDAO() {
+        return trainingDomainDAO;
+    }
+
+    public void setTrainingDomainDAO(TrainingDomainDAO trainingDomainDAO) {
+        this.trainingDomainDAO = trainingDomainDAO;
     }
 }

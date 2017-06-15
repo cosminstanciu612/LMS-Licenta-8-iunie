@@ -3,6 +3,7 @@ package ro.ubbcluj.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.ubbcluj.dao.MockDAO;
+import ro.ubbcluj.dao.UserDAO;
 import ro.ubbcluj.domain.Department;
 import ro.ubbcluj.domain.Training;
 import ro.ubbcluj.domain.User;
@@ -20,15 +21,15 @@ public class UserServiceImpl implements UserService {
     public static String infoMessage = "";
 
     @Autowired
-    private MockDAO userDAO;
+    private UserDAO userDAO;
 
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
 
-    public List<Department> getAllDepartments() {
-        return userDAO.getAllDepartments();
-    }
+//    public List<Department> getAllDepartments() {
+//        return userDAO.getAllDepartments();
+//    }
 
     public User getUserById(int userId) {
         return userDAO.getUserById(userId);
@@ -65,12 +66,12 @@ public class UserServiceImpl implements UserService {
     }
 
     public User deleteUser(String id) {
-        return userDAO.deleteUser(getUserById(Integer.parseInt(id)));
+        return userDAO.deleteUser(Integer.parseInt(id));
     }
 
-    public Department getDepartmentById(int i) {
-        return userDAO.getDepartmentById(i);
-    }
+//    public Department getDepartmentById(int i) {
+//        return userDAO.getDepartmentById(i);
+//    }
 
     public String getInfoMessage() {
         return infoMessage;

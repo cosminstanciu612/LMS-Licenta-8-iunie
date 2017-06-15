@@ -12,10 +12,7 @@ import ro.ubbcluj.domain.User;
 import ro.ubbcluj.service.UserService;
 import ro.ubbcluj.util.DepartmentEditor;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Cosmin on 16-Apr-17.
@@ -60,7 +57,8 @@ public class UserController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addUserForm(Model model) {
-        model.addAttribute("departments", userService.getAllDepartments());
+//        model.addAttribute("departments", userService.getAllDepartments());
+        model.addAttribute("departments", new ArrayList<Department>()); //todo: create DepartmentDAO
         model.addAttribute("userForm", new User());
         return "userAdd";
     }
@@ -87,7 +85,8 @@ public class UserController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String getEditUser(Model model, @PathVariable(value = "id") String id ) {
         model.addAttribute("userEdit", userService.getUserById(Integer.parseInt(id)));
-        model.addAttribute("departments", userService.getAllDepartments());
+//        model.addAttribute("departments", userService.getAllDepartments());
+        model.addAttribute("departments", new ArrayList<Department>()); //todo: create deparmentDAO
         return "userEdit";
     }
 

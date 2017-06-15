@@ -34,7 +34,7 @@
             <td><form:textarea path="description" cssClass="training-description"/></td>
         </tr>
         <tr>
-            <td>><form:label path = "domains">Department</form:label></td>
+            <td>><form:label path = "domains">Domain</form:label></td>
             <td>
                 <form:select path="domains" items="${domains}" itemValue="id" itemLabel="name" />
             </td>

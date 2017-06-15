@@ -1,10 +1,20 @@
 package ro.ubbcluj.domain;
 
+import javax.persistence.*;
+
 /**
  * Created by Cosmin on 21-Apr-17.
  */
+
+@Entity
+@Table(name = "extradetails")
 public class ExtraDetails {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String header;
     private String information;
 

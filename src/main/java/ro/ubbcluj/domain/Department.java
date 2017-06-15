@@ -1,13 +1,19 @@
 package ro.ubbcluj.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /**
  * Created by Cosmin on 23-Apr-17.
  */
 @Entity
+@Table(name = "departments")
 public class Department {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
 
     public Department() {

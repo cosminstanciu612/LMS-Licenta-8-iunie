@@ -13,15 +13,6 @@ import java.util.List;
  */
 public interface MockDAO {
 //    Users
-    List<User> getAllUsers();
-
-    User getUserById(int id);
-
-    User deleteUser(User id);
-
-    void editUser(User newVersionUser);
-
-    void addUser(User user);
 
 
 

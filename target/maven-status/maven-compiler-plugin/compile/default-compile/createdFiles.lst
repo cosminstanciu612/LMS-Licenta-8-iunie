@@ -2,9 +2,12 @@ ro\ubbcluj\dao\MockDAO.class
 ro\ubbcluj\domain\TrainingDomain.class
 ro\ubbcluj\domain\Department.class
 ro\ubbcluj\service\impl\UserServiceImpl.class
+ro\ubbcluj\dao\TrainingDomainDAO.class
 ro\ubbcluj\domain\User.class
+ro\ubbcluj\domain\Feedback.class
 ro\ubbcluj\controller\UserController.class
 ro\ubbcluj\service\impl\TrainingServiceImpl.class
+ro\ubbcluj\dao\impl\TrainingDomainDAOImpl.class
 ro\ubbcluj\controller\TrainingController.class
 ro\ubbcluj\domain\Training.class
 ro\ubbcluj\domain\ExtraDetails.class
@@ -13,5 +16,6 @@ ro\ubbcluj\dao\UserDAO.class
 ro\ubbcluj\service\TrainingService.class
 ro\ubbcluj\controller\DefaultController.class
 ro\ubbcluj\service\UserService.class
+ro\ubbcluj\dao\impl\UserDAOImpl.class
 ro\ubbcluj\util\TrainingDomainEditor.class
 ro\ubbcluj\dao\impl\MockDAOImpl.class

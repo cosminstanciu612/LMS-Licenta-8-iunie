@@ -1,6 +1,7 @@
 package ro.ubbcluj.domain;
 
-import javax.persistence.Entity;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,17 +9,31 @@ import java.util.List;
  * Created by Cosmin on 16-Apr-17.
  */
 @Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String email;
     private String firstName;
     private String lastName;
     private String phoneNumber;
+
+    @OneToMany
     private List<Training> trainingsHeld;
+    @OneToMany
     private List<Training> trainingsParticipated;
+
+    @ManyToOne
     private Department department;
     private boolean deleted = false;
+    private String password;
 
+    @OneToMany
+    private List<Feedback> feedbacks;
 
     public User() {
         this.trainingsHeld = new ArrayList<Training>();
@@ -123,12 +138,28 @@ public class User {
         this.deleted = deleted;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void edit(User newVersionUser) {
         this.setFirstName(newVersionUser.getFirstName());
         this.setLastName(newVersionUser.getLastName());
         this.setDepartment(newVersionUser.getDepartment());
         this.setPhoneNumber(newVersionUser.getPhoneNumber());
         this.setEmail(newVersionUser.getEmail());
+    }
+
+    public List<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(List<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
     }
 }
 

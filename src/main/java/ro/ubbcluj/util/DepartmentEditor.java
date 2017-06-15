@@ -30,6 +30,6 @@ public class DepartmentEditor extends PropertyEditorSupport
     @Override
     public void setAsText(String id)
     {
-         this.setValue(userService.getDepartmentById(Integer.parseInt(id)));
+//         this.setValue(userService.getDepartmentById(Integer.parseInt(id))); //todo: make it work ^^
     }
 }

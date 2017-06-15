@@ -28,7 +28,7 @@
         <div class="page-title">${pageTitle}</div>
     </div>
 </c:if>
-${infoMessage}
+
 <c:if test="${not empty infoMessage}">
     <div class="message">
         <p>${infoMessage}</p>

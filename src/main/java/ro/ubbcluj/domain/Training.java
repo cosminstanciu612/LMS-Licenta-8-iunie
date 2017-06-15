@@ -1,5 +1,6 @@
 package ro.ubbcluj.domain;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,17 +8,30 @@ import java.util.List;
 /**
  * Created by Cosmin on 21-Apr-17.
  */
+@Entity
+@Table(name = "trainings")
 public class Training {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String subject;
     private String description;
+
+    @OneToMany(fetch = FetchType.EAGER)
     private List<TrainingDomain> domains;
+
     private Date addedOn;
     private Date fromDate;
+    private double duration;
 //    private Date toDate;
     /**
      * can be null
      */
+
+    @OneToMany
     private List<ExtraDetails> extraDetailsList;
 
     public Training() {
@@ -123,6 +137,14 @@ public class Training {
 //    public void setToDate(Date toDate) {
 //        this.toDate = toDate;
 //    }
+
+    public double getDuration() {
+        return duration;
+    }
+
+    public void setDuration(double duration) {
+        this.duration = duration;
+    }
 }
 
 
