@@ -20,7 +20,7 @@ public interface TrainingService {
     List<Training> getTrainingsByDomains(List<TrainingDomain> domains);
 
     void addTraining(Training training);
-    void editTraining(Training oldVersionTraining, Training newVersionTraining);
+    void editTraining(Training newVersionTraining);
     void deleteTraining(Training training);
 
     List<TrainingDomain> getAllDomains();

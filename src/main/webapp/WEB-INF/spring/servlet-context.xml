@@ -14,7 +14,7 @@
 
 
     <mvc:annotation-driven/>
-    <context:component-scan base-package="ro.ubbcluj"/>
+    <context:component-scan base-package="ro.ubbcluj.controller"/>
 
     <mvc:resources mapping="/styles/**" location="/styles/" />
     <mvc:resources mapping="/image/**" location="/image/" />

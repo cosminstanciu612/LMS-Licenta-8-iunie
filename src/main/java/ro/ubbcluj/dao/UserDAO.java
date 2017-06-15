@@ -1,5 +1,6 @@
 package ro.ubbcluj.dao;
 
+import ro.ubbcluj.domain.Department;
 import ro.ubbcluj.domain.User;
 
 import java.util.List;
@@ -18,4 +19,8 @@ public interface UserDAO {
     void editUser(User newVersionUser);
 
     void addUser(User user);
+
+    List<Department> getAllDepartments();
+
+    Department getDepartmentById(int id);
 }

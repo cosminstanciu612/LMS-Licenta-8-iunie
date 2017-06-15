@@ -17,21 +17,5 @@ public interface MockDAO {
 
 
 //    Trainings
-    List<Training> getAllTrainings();
 
-    Training getTrainingById(int id);
-
-    void addTraining(Training training);
-
-    void editTraining(int id, Training newVersionTraining);
-
-    void deleteTraining(int id);
-
-    List<Department> getAllDepartments();
-
-    Department getDepartmentById(int id);
-
-    List<TrainingDomain> getAllDomains();
-
-    TrainingDomain getTrainingDomainById(int i);
 }

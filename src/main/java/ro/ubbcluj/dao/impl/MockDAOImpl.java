@@ -138,7 +138,7 @@ public class MockDAOImpl implements MockDAO {
 
     public void addUser(User user) {
 //        TODO: remove setId method because Hibernate will take care of it
-        user.setId(getNextId());
+//        user.setId(getNextId());
         users.add(user);
     }
 

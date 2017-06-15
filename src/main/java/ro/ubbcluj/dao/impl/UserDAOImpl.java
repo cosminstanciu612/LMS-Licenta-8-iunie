@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ro.ubbcluj.dao.UserDAO;
+import ro.ubbcluj.domain.Department;
 import ro.ubbcluj.domain.TrainingDomain;
 import ro.ubbcluj.domain.User;
 
@@ -24,64 +25,31 @@ public class UserDAOImpl implements UserDAO {
     private SessionFactory sessionFactory;
 
     public List<User> getAllUsers() {
-        Session session;
-        try {
-            session = sessionFactory.getCurrentSession();
-        } catch (HibernateException e) {
-            session = sessionFactory.openSession();
-        }
-        List<User> users = (List<User>) session.createQuery("from User").list();
-        session.close();
-        return users;
+        Session session = sessionFactory.getCurrentSession();
+        return (List<User>) session.createQuery("FROM User").list();
     }
 
     public User getUserById(int id) {
-        Session session;
-        try {
-            session = sessionFactory.getCurrentSession();
-        } catch (HibernateException e) {
-            session = sessionFactory.openSession();
-        }
-        User user = (User) session.get(User.class, id);
-        session.close();
-        return user;
+        Session session = sessionFactory.getCurrentSession();
+        return (User) session.get(User.class, id);
     }
 
     public User deleteUser(int id) {
-        Session session;
-        try {
-            session = sessionFactory.getCurrentSession();
-        } catch (HibernateException e) {
-            session = sessionFactory.openSession();
-        }
+        Session session = sessionFactory.getCurrentSession();
         User user = (User) session.get(User.class, id);
         user.setDeleted(true);
-        user.setPhoneNumber("0099888");
         session.update(user);
-        session.close();
         return user;
     }
 
     public void editUser(User newVersionUser) {
-        Session session;
-        try {
-            session = sessionFactory.getCurrentSession();
-        } catch (HibernateException e) {
-            session = sessionFactory.openSession();
-        }
+        Session session = sessionFactory.getCurrentSession();
         session.update(newVersionUser);
-        session.close();
     }
 
     public void addUser(User user) {
-        Session session;
-        try {
-            session = sessionFactory.getCurrentSession();
-        } catch (HibernateException e) {
-            session = sessionFactory.openSession();
-        }
+        Session session = sessionFactory.getCurrentSession();
         session.persist(user);
-        session.close();
     }
 
     public SessionFactory getSessionFactory() {
@@ -92,5 +60,15 @@ public class UserDAOImpl implements UserDAO {
         this.sessionFactory = sessionFactory;
     }
 
+
+    public List<Department> getAllDepartments() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Department").list();
+    }
+
+    public Department getDepartmentById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        return (Department) session.get(Department.class, id);
+    }
 
 }

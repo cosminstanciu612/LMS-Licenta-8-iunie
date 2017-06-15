@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface UserService {
     List<User> getAllUsers();
-//    List<Department> getAllDepartments();
+    List<Department> getAllDepartments();
 
     User getUserById(int userEmail);
 
@@ -23,7 +23,7 @@ public interface UserService {
 
     User deleteUser(String id);
 
-//    Department getDepartmentById(int i);
+    Department getDepartmentById(int i);
 
     String getInfoMessage();
 

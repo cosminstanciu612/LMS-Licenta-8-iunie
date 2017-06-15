@@ -1,6 +1,7 @@
 package ro.ubbcluj.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import ro.ubbcluj.dao.MockDAO;
 import ro.ubbcluj.dao.UserDAO;
@@ -9,6 +10,7 @@ import ro.ubbcluj.domain.Training;
 import ro.ubbcluj.domain.User;
 import ro.ubbcluj.service.UserService;
 
+import javax.servlet.ServletContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +29,9 @@ public class UserServiceImpl implements UserService {
         return userDAO.getAllUsers();
     }
 
-//    public List<Department> getAllDepartments() {
-//        return userDAO.getAllDepartments();
-//    }
+    public List<Department> getAllDepartments() {
+        return userDAO.getAllDepartments();
+    }
 
     public User getUserById(int userId) {
         return userDAO.getUserById(userId);
@@ -69,9 +71,9 @@ public class UserServiceImpl implements UserService {
         return userDAO.deleteUser(Integer.parseInt(id));
     }
 
-//    public Department getDepartmentById(int i) {
-//        return userDAO.getDepartmentById(i);
-//    }
+    public Department getDepartmentById(int i) {
+        return userDAO.getDepartmentById(i);
+    }
 
     public String getInfoMessage() {
         return infoMessage;
