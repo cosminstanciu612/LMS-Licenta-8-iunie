@@ -14,8 +14,8 @@
 <html>
 <head>
     <title>${user.firstName}'s Details</title>
-    <spring:url value="/styles/userdetails.css" var="userdetails"/>
-    <link rel="stylesheet" type="text/css" href="${userdetails}"/>
+    <spring:url value="/styles/users.css" var="users"/>
+    <link rel="stylesheet" type="text/css" href="${users}"/>
 
 
     <spring:url value="/styles/common.css" var="common"/>

@@ -1,3 +1,5 @@
+@import url("simplegrid.css");
+
 .logo {
     float: left;
     margin-left: 0px;
@@ -5,6 +7,7 @@
 
 li.menu-link {
     display: inline;
+    margin-left: 10px;
 }
 
 ul.nav-bar {
@@ -17,7 +20,7 @@ ul.nav-bar {
 
 .header {
     height: 50px;
-    max-width: 1050px;
+    max-width: 75%;
     margin: 10px auto 0;
 
 }
@@ -37,7 +40,7 @@ a {
 
 .page-title {
     color: #ffffff;
-    width: 1050px;
+    width: 75%;
     margin: 0 auto;
     font-size: 35px;
 }

@@ -4,6 +4,6 @@
 
 <div class="footer">
     <div class="footer-right">
-        <p>Cosmin Stanciu - Licenta 2017</p>
+        <p class="footer-margin">Cosmin Stanciu - Licenta 2017</p>
     </div>
 </div>

@@ -46,6 +46,7 @@ public class UserController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String getUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("departments", userService.getAllDepartments());
         return USERS_LIST;
     }
 
@@ -57,8 +58,7 @@ public class UserController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addUserForm(Model model) {
-//        model.addAttribute("departments", userService.getAllDepartments());
-        model.addAttribute("departments", new ArrayList<Department>()); //todo: create DepartmentDAO
+        model.addAttribute("departments", userService.getAllDepartments());
         model.addAttribute("userForm", new User());
         return "userAdd";
     }
@@ -83,18 +83,29 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String getEditUser(Model model, @PathVariable(value = "id") String id ) {
+    public String getEditUser(Model model, @PathVariable(value = "id") String id) {
         model.addAttribute("userEdit", userService.getUserById(Integer.parseInt(id)));
-//        model.addAttribute("departments", userService.getAllDepartments());
-        model.addAttribute("departments", new ArrayList<Department>()); //todo: create deparmentDAO
+        model.addAttribute("departments", userService.getAllDepartments());
         return "userEdit";
     }
 
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editUser(@ModelAttribute("userEdit") User user, RedirectAttributes redirectAttributes) {
         userService.editUser(user);
         redirectAttributes.addFlashAttribute("User modified");
         return "redirect:/user/all";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchUsers(@RequestParam(value = "searchTerm") String searchTerm,
+                              @RequestParam(value = "department") String department,
+                              Model model) {
+        model.addAttribute("selectedDepartment", department);
+        model.addAttribute("searchTerm", searchTerm);
+        model.addAttribute("users", userService.searchUsers(searchTerm, department));
+        model.addAttribute("departments", userService.getAllDepartments());
+        return "usersList";
+
     }
 }

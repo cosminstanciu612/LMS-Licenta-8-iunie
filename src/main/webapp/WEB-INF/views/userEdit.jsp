@@ -1,53 +1,88 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tag" %>
 <%--
   Created by IntelliJ IDEA.
   User: Cosmin
-  Date: 02-Jun-17
-  Time: 7:54 PM
+  Date: 21-Apr-17
+  Time: 1:00 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <html>
 <head>
-    <title>Title</title>
+    <title>Edit User</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <spring:url value="/styles/common.css" var="common"/>
+    <link rel="stylesheet" type="text/css" href="${common}"/>
+
+    <spring:url value="/styles/users.css" var="usersStyle"/>
+    <link rel="stylesheet" type="text/css" href="${usersStyle}"/>
 </head>
 <body>
-<form:form method = "POST" action = "/lms/user/edit/${userEdit.id}" commandName="userEdit">
-    <table>
-        <form:input type="hidden" path="id" value="${userEdit.id}"/>
-        <tr>
-            <td><form:label path = "firstName">First name</form:label></td>
-            <td><form:input path = "firstName" />${userEdit.firstName}</td>
-        </tr>
-        <tr>
-            <td><form:label path = "lastName">Last name</form:label></td>
-            <td><form:input path = "lastName" />${userEdit.lastName}</td>
-        </tr>
-        <tr>
-            <td><form:label path = "email">Email</form:label></td>
-            <td><form:input path = "email" />${userEdit.email}</td>
-        </tr>
-        <tr>
-            <td><form:label path = "phoneNumber">Phone number</form:label></td>
-            <td><form:input path = "phoneNumber" />${userEdit.phoneNumber}</td>
-        </tr>
-        <tr>
-            <td>><form:label path = "department">Department</form:label></td>
-            <td>
-                <form:select path="department" items="${departments}" itemValue="id" itemLabel="name" />
-            </td>
+<tag:header/>
+<%--TODO: extract "/lms" in a constant--%>
+<div class="container">
+    <form:form method="POST" action="/lms/user/edit?${_csrf.parameterName}=${_csrf.token}" commandName="userEdit">
+        <div class="table add-edit">
+            <form:input type="hidden" path="id" value="${userEdit.id}"/>
 
-            <td><form:errors path="department" cssClass="error" /></td>
-        </tr>
-        <tr>
-            <td colspan = "2">
-                <input type = "submit" value = "Submit"/>
-            </td>
-        </tr>
-    </table>
-</form:form>
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="firstName">First name</form:label>
+                </div>
+                <div class="col-2-3">
+                    <form:input path="firstName"/>
+                </div>
+            </div>
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="lastName">Last name</form:label>
+                </div>
+                <div class="col-2-3">
+                    <form:input path="lastName"/>
+                </div>
+            </div>
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="email">Email</form:label>
+                </div>
+                <div class="col-2-3">
+                    <form:input path="email"/>
+                </div>
+            </div>
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="phoneNumber">Phone number</form:label>
+                </div>
+                <div class="col-2-3">
+                    <form:input path="phoneNumber"/>
+                </div>
+            </div>
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="department">Department</form:label>
+                </div>
+                <div class="col-2-3">
+                    <form:select id="department" path="department" items="${departments}" itemValue="id" itemLabel="name"/>
+                </div>
+            </div>
+
+            <div class="grid grid-pad">
+                <div class="col-1-4">
+                    <input class="button-blue" type="submit" value="Submit"/>
+                </div>
+            </div>
+        </div>
+    </form:form>
+</div>
+<tag:footer/>
 <script>
-    document.getElementById('editUser').getElementsByTagName('option')[${userEdit.department.id}].selected  = 'selected';
+    document.getElementById('department').value = ${userEdit.department.id};
 </script>
 </body>
 </html>

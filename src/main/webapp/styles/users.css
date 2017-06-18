@@ -1,0 +1,141 @@
+.table {
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    display: table;
+    margin-bottom: 20px;
+}
+
+.table.add-edit {
+    width: 60% !important;
+}
+
+.table input {
+    width: 100%;
+    height: 30px;
+}
+.table .grid {
+    min-width: 100% !important;
+}
+
+.row {
+    display: table-row ;
+    background: #ffffff;:
+padding: 8px 0;
+}
+
+.row:hover {
+    background: #f2f2f2;
+}
+
+.row.header {
+    background: #27ae60;
+    color: #ffffff;
+    font-weight: 900;
+
+}
+
+.cell {
+    padding: 15px 15px ;
+    display: table-cell ;
+}
+
+
+.button-green {
+    background-color: #27ae60;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+.button-blue {
+    background-color: #26ade4;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    height: inherit !important;
+}
+
+.bottom-right {
+    position:absolute;
+    bottom: 50px;
+    right: 100px;
+}
+
+.department {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-left: 10px;
+    display: block;
+    height: 38px;
+    margin-right: 10px;
+}
+
+.table.add-edit select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-left: 10px;
+    display: block;
+    height: 30px;
+    width: 100%;
+}
+
+.search-input {
+    margin-right: 10px;
+}
+
+/*details*/
+
+.user-name {
+    width: 50%;
+    font-size: 30px;
+    border-bottom: 2px solid #27ae60;
+    padding: 15px;
+}
+
+.user-details {
+    padding: 15px;
+    font-size: 20px;
+}
+
+.user-details td {
+    padding: 10px 20px;
+}
+
+.left-border-bold {
+    height: 150px;
+    width: 50px;
+    background-color: #27ae60;
+    float: left;
+    margin-right: 20px;
+}
+
+.subject {
+    font-size: 30px;
+    padding: 10px;
+}
+
+.short-description {
+    font-size: 18px;
+    padding: 10px;
+}
+
+.training-box {
+    height: 150px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin: 20px 0px;
+    min-width: 600px;
+}

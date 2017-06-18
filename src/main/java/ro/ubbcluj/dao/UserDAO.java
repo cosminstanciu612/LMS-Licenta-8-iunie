@@ -23,4 +23,6 @@ public interface UserDAO {
     List<Department> getAllDepartments();
 
     Department getDepartmentById(int id);
+
+    List searchUsers(String searchTerm, int departmentId);
 }

@@ -9,7 +9,7 @@
 
 <div class="header">
 
-    <h1><a class="logo grey" href="/">LMS</a></h1>
+    <h1><a class="logo grey" href="<c:url value="/"/>">LMS</a></h1>
     <ul class="nav-bar">
         <li class="menu-link">
             <a href="<c:url value="/"/>">home</a>

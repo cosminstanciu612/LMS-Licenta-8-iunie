@@ -1,6 +1,7 @@
 body {
     font-family: 'Merriweather', serif;
     margin: 0;
+    font-size: 14px;
 }
 
 .content {
@@ -12,6 +13,24 @@ body {
 }
 
 .container {
-    width: 1050px;
+    width: 75%;
     margin: 0 auto;
+    min-height: 65%;
+}
+
+input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-left: 10px;
+    height: 38px;
+}
+
+html {
+    height: 100%;
+}
+
+
+.submit-btn {
+    background-color: #26ade4;
+    color: #ffffff;
 }

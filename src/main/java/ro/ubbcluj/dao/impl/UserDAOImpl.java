@@ -1,6 +1,7 @@
 package ro.ubbcluj.dao.impl;
 
-import org.hibernate.HibernateException;
+import org.apache.commons.lang.StringUtils;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ro.ubbcluj.dao.UserDAO;
 import ro.ubbcluj.domain.Department;
-import ro.ubbcluj.domain.TrainingDomain;
 import ro.ubbcluj.domain.User;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -69,6 +68,35 @@ public class UserDAOImpl implements UserDAO {
     public Department getDepartmentById(int id) {
         Session session = sessionFactory.getCurrentSession();
         return (Department) session.get(Department.class, id);
+    }
+
+    public List<User> searchUsers(String searchTerm, int departmentId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = getQuery(searchTerm, departmentId);
+        Query query = session.createQuery(hql);
+        if (StringUtils.isNotEmpty(searchTerm))
+            query.setParameter("searchField", searchTerm);
+        if (departmentId > 0)
+            query.setParameter("department", getDepartmentById(departmentId));
+        return (List<User>) query.list();
+
+    }
+
+    private String getQuery(String searchTerm, int departmentId) {
+        String hql = "from User as u ";
+        if (StringUtils.isNotEmpty(searchTerm) || departmentId > 0) {
+            hql += "where ";
+            if (StringUtils.isNotEmpty(searchTerm)) {
+                hql += "(u.firstName like :searchField " +
+                        "or u.lastName like :searchField)";
+                if (departmentId > 0) {
+                    hql += " AND u.department = :department";
+                }
+            } else {
+                hql += " u.department = :department";
+            }
+        }
+        return hql;
     }
 
 }

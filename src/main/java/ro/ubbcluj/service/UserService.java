@@ -28,4 +28,6 @@ public interface UserService {
     String getInfoMessage();
 
     void setInfoMessage(String infoMessage);
+
+    List<User> searchUsers(String searchTerm, String department);
 }

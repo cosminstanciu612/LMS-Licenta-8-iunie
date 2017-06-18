@@ -1,16 +1,14 @@
 package ro.ubbcluj.service.impl;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
-import ro.ubbcluj.dao.MockDAO;
 import ro.ubbcluj.dao.UserDAO;
 import ro.ubbcluj.domain.Department;
 import ro.ubbcluj.domain.Training;
 import ro.ubbcluj.domain.User;
 import ro.ubbcluj.service.UserService;
 
-import javax.servlet.ServletContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,5 +79,23 @@ public class UserServiceImpl implements UserService {
 
     public void setInfoMessage(String infoMessage) {
         this.infoMessage = infoMessage;
+    }
+
+    public List<User> searchUsers(String searchTerm, String departmentId) {
+        List<User> users;
+        int id = 0;
+        try {
+            id = Integer.parseInt(departmentId);
+        }
+        catch (NumberFormatException e) {
+            id = 0;
+        } finally {
+            if (id < 0)
+                id = 0;
+        }
+
+
+            users = userDAO.searchUsers(searchTerm, id);
+        return users;
     }
 }
