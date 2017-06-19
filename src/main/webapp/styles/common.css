@@ -15,7 +15,7 @@ body {
 .container {
     width: 75%;
     margin: 0 auto;
-    min-height: 65%;
+    min-height: 70%;
 }
 
 input {
@@ -33,4 +33,10 @@ html {
 .submit-btn {
     background-color: #26ade4;
     color: #ffffff;
+}
+
+.message {
+    width: 75%;
+    margin: 0 auto;
+    color: #26ade4;
 }

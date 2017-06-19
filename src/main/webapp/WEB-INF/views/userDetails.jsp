@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tag" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -25,6 +26,15 @@
 
 <body>
 <div class="content">
+    <sec:authentication property="principal.username" var="authenticatedUser"/>
+    <sec:authentication property="principal.authorities" var="authorities"/>
+    <c:set var="isAdmin" value="false" />
+    <c:forEach var="role" items="${authorities}">
+        <c:if test="${role eq 'ROLE_ADMIN'}">
+            <c:set var="isAdmin" value="true" />
+        </c:if>
+    </c:forEach>
+    <c:if test="${authenticatedUser eq user.email || isAdmin}">this is the authenticated user</c:if>
     <div class="user-name">
         <c:out value="${user.firstName}"/>&nbsp;
         <c:out value="${user.lastName}"/>

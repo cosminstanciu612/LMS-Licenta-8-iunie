@@ -3,7 +3,9 @@ package ro.ubbcluj.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Cosmin on 16-Apr-17.
@@ -35,9 +37,18 @@ public class User {
     @OneToMany
     private List<Feedback> feedbacks;
 
+
+    @ManyToMany
+    private List<UserRole> role = new ArrayList<>(0);
+
     public User() {
         this.trainingsHeld = new ArrayList<Training>();
         this.trainingsParticipated = new ArrayList<Training>();
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     public User(String email, String firstName, String lastName, String phoneNumber, Department department) {
@@ -160,6 +171,14 @@ public class User {
 
     public void setFeedbacks(List<Feedback> feedbacks) {
         this.feedbacks = feedbacks;
+    }
+
+    public List<UserRole> getRole() {
+        return role;
+    }
+
+    public void setRole(List<UserRole> role) {
+        this.role = role;
     }
 }
 

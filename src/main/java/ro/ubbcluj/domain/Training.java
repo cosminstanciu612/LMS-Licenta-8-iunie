@@ -18,6 +18,8 @@ public class Training {
     private int id;
 
     private String subject;
+
+    @Column(length = 1400)
     private String description;
 
     @OneToMany(fetch = FetchType.EAGER)

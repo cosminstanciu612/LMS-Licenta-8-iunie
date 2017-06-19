@@ -25,6 +25,11 @@ public class TrainingController {
     @Autowired
     private TrainingService trainingService;
 
+    @ModelAttribute(value = "pageTitle")
+    public String getPageTitle() {
+        return "Trainings";
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(TrainingDomain.class, new TrainingDomainEditor(trainingService));

@@ -9,6 +9,8 @@ import ro.ubbcluj.domain.Training;
 import ro.ubbcluj.domain.User;
 import ro.ubbcluj.service.UserService;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +60,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void addUser(User user) {
+        user.setPassword(getRandomPassword());
         userDAO.addUser(user);
     }
 
@@ -97,5 +100,9 @@ public class UserServiceImpl implements UserService {
 
             users = userDAO.searchUsers(searchTerm, id);
         return users;
+    }
+
+    private String getRandomPassword() {
+        return new BigInteger(130, new SecureRandom()).toString(32);
     }
 }

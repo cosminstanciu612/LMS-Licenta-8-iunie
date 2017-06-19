@@ -2,20 +2,14 @@ package ro.ubbcluj.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ro.ubbcluj.dao.MockDAO;
 import ro.ubbcluj.dao.TrainingDAO;
-import ro.ubbcluj.dao.TrainingDomainDAO;
 import ro.ubbcluj.domain.Training;
 import ro.ubbcluj.domain.TrainingDomain;
 import ro.ubbcluj.domain.User;
 import ro.ubbcluj.service.TrainingService;
 
-import java.util.*;
-
-import javax.mail.*;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Cosmin on 21-Apr-17.
@@ -25,9 +19,6 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Autowired
     private TrainingDAO trainingDAO;
-
-    @Autowired
-    private TrainingDomainDAO trainingDomainDAO;
 
     public Training getTrainingById(int id) {
         return trainingDAO.getTrainingById(id);
@@ -106,19 +97,11 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     public List<TrainingDomain> getAllDomains() {
-        return trainingDomainDAO.getTrainingDomains();
+        return trainingDAO.getAllDomains();
     }
 
     public TrainingDomain getTrainingDomainById(int i) {
         return trainingDAO.getTrainingDomainById(i);
     }
 
-
-    public TrainingDomainDAO getTrainingDomainDAO() {
-        return trainingDomainDAO;
-    }
-
-    public void setTrainingDomainDAO(TrainingDomainDAO trainingDomainDAO) {
-        this.trainingDomainDAO = trainingDomainDAO;
-    }
 }

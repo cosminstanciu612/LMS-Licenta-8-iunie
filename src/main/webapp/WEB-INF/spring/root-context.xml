@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		 http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
          ">
     <context:component-scan base-package="ro.ubbcluj" annotation-config="true"/>
 
@@ -36,4 +38,25 @@
         <property name="username" value="root" />
         <property name="password" value="root" />
     </bean>
+
+    <!--Security-->
+    <security:http auto-config='true'>
+        <security:intercept-url pattern="/" access="permitAll"/>
+        <security:intercept-url pattern="/login/**" access="isAnonymous()"/>
+        <security:intercept-url pattern="/user/**" access="hasRole('USER')"/>
+        <security:intercept-url pattern="/training/**" access="hasRole('USER')"/>
+        <security:intercept-url pattern="/my-account/**" access="hasRole('USER')"/>
+        <security:form-login login-page='/login'
+                             default-target-url="/"
+                             authentication-failure-url="/login"
+                             username-parameter="email"
+                             password-parameter="password"/>
+        <!--<security:access-denied-handler error-page="/accessDenied"/>-->
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="userDetailsService">
+            <!--<security:password-encoder hash="md5"/>-->
+        </security:authentication-provider>
+    </security:authentication-manager>
 </beans>

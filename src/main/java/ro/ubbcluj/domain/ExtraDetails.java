@@ -16,6 +16,8 @@ public class ExtraDetails {
     private int id;
 
     private String header;
+
+    @Column(length = 1200)
     private String information;
 
     public ExtraDetails() {

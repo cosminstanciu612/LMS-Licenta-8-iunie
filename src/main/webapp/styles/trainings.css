@@ -1,0 +1,17 @@
+.training-box {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    height: 160px;
+    width: 90%;
+    background-color: #26ade4;
+    color: #ffffff;
+}
+
+.training-date-time-box {
+    border-left: rgba(255, 255, 255, 0.4) 1px solid;
+    margin-top: 25px;
+}
+.training-date-time {
+    width: 65%;
+    margin-left: 30px;
+}

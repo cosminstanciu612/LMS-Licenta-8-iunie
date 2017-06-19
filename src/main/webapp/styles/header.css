@@ -42,7 +42,8 @@ a {
     color: #ffffff;
     width: 75%;
     margin: 0 auto;
-    font-size: 35px;
+    font-size: 25px;
+    padding: 5px 0;
 }
 
 h1 {

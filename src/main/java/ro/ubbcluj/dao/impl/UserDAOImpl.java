@@ -82,6 +82,14 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
+    @Override
+    public User getUserByEmail(String email) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from User as u where u.email = :email");
+        query.setParameter("email", email);
+        return (User) query.uniqueResult();
+    }
+
     private String getQuery(String searchTerm, int departmentId) {
         String hql = "from User as u ";
         if (StringUtils.isNotEmpty(searchTerm) || departmentId > 0) {

@@ -25,4 +25,6 @@ public interface UserDAO {
     Department getDepartmentById(int id);
 
     List searchUsers(String searchTerm, int departmentId);
+
+    User getUserByEmail(String email);
 }
