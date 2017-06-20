@@ -1,5 +1,7 @@
 package ro.ubbcluj.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,13 +21,15 @@ public class Training {
 
     private String subject;
 
-    @Column(length = 1400)
+    @Column(columnDefinition = "NVARCHAR(1400)")
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<TrainingDomain> domains;
 
     private Date addedOn;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date fromDate;
     private double duration;
 //    private Date toDate;

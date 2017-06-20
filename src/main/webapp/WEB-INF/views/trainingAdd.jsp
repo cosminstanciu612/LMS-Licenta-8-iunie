@@ -10,45 +10,69 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tag" %>
 
 <html>
 <head>
     <title>New Training</title>
-    <spring:url value="/styles/common.css" var="mainCss" />
+    <spring:url value="/styles/common.css" var="mainCss"/>
     <link rel="stylesheet" type="text/css" href="${mainCss}"/>
 </head>
 <body>
-<form:form method="POST" action="/lms/training/add" commandName="trainingForm">
-    <table>
-        <tr>
-            <td><form:label path="subject">Subject</form:label></td>
-            <td><form:input path="subject"/></td>
-        </tr>
-        <tr>
-            <td><form:label path="fromDate">Date</form:label> </td>
-            <%--<td><form:input path="fromDate" cssClass="date-picker"/></td>--%>
-            <td><form:input path="fromDate" type="datetime-local"/></td>
-        </tr>
-        <tr>
-            <td><form:label path="description">Description</form:label></td>
-            <td><form:textarea path="description" cssClass="training-description"/></td>
-        </tr>
-        <tr>
-            <td>><form:label path = "domains">Domain</form:label></td>
-            <td>
-                <form:select path="domains" items="${domains}" itemValue="id" itemLabel="name" />
-            </td>
-            <td><form:errors path="domains" cssClass="error" /></td>
+<tag:header/>
+<div class="container">
+    <form:form method="POST" action="/lms/training/add" commandName="trainingForm">
+        <div class="table add-edit">
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="subject">Subject</form:label>
+                </div>
+                <div class="col-2-3">
+                    <form:input path="subject"/>
+                </div>
+            </div>
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="description">Description</form:label>
+                </div>
+                <div class="col-2-3 large-content">
+                    <form:textarea path="description"/>
+                </div>
+            </div>
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="fromDate" >When</form:label>
+                </div>
+                <div class="col-2-3">
+                    <form:input path="fromDate" type="datetime-local"/>
+                </div>
+            </div>
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="duration">Duration</form:label>
+                </div>
+                <div class="col-2-3">
+                    <form:input path="duration"/>
+                </div>
+            </div>
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="domains">Domains</form:label>
+                </div>
+                <div class="col-2-3">
 
-        </tr>
+                    <form:select path="domains" items="${domains}" itemValue="id" itemLabel="name"/>
+                </div>
+            </div>
 
-        <tr>
-            <td colspan = "2">
-                <input type = "submit" value = "Submit"/>
-            </td>
-        </tr>
-    </table>
-</form:form>
-
+            <div class="grid grid-pad">
+                <div class="col-1-4">
+                    <input class="button-blue" type="submit" value="Submit"/>
+                </div>
+            </div>
+        </div>
+    </form:form>
+</div>
+<tag:footer/>
 </body>
 </html>

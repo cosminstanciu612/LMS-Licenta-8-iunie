@@ -1,7 +1,12 @@
 body {
-    font-family: 'Merriweather', serif;
+    font-family: 'Merriweather', serif !important;
     margin: 0;
     font-size: 14px;
+}
+
+.override-font {
+    font-weight: 600;
+    font-family: 'Merriweather', serif !important;
 }
 
 .content {
@@ -39,4 +44,34 @@ html {
     width: 75%;
     margin: 0 auto;
     color: #26ade4;
+}
+
+
+.table.add-edit select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-left: 10px;
+    display: block;
+    height: 30px;
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    display: table;
+    margin-bottom: 20px;
+}
+
+.table.add-edit {
+    width: 60% !important;
+}
+
+
+.table input {
+    width: 100%;
+    height: 30px;
+}
+.table .grid {
+    min-width: 100% !important;
 }

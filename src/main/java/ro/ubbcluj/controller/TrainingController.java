@@ -1,5 +1,6 @@
 package ro.ubbcluj.controller;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +39,8 @@ public class TrainingController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getTrainingById(Model model, @PathVariable("id") int id) {
-        model.addAttribute("training", trainingService.getTrainingById(id));
+        Training training = trainingService.getTrainingById(id);
+        model.addAttribute("training", training);
         return "trainingDetails";
     }
 //    @RequestMapping(value = "/TESTMAIL")
@@ -63,6 +65,21 @@ public class TrainingController {
     public String addUser(RedirectAttributes redirectAttributes, @ModelAttribute("trainingForm") Training training, BindingResult bindingResult) {
 //        TODO: check why the department is not added to the new user !
         trainingService.addTraining(training);
+        redirectAttributes.addFlashAttribute("newTrainingAdded", training.getSubject());
+        return "redirect:/training/all";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String editTrainingForm(Model model) {
+        model.addAttribute("trainingForm", new Training());
+        model.addAttribute("domains", trainingService.getAllDomains());
+        return "trainingAdd";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String editUser(RedirectAttributes redirectAttributes, @ModelAttribute("trainingForm") Training training, BindingResult bindingResult) {
+//        TODO: check why the department is not added to the new user !
+        trainingService.editTraining(training);
         redirectAttributes.addFlashAttribute("newTrainingAdded", training.getSubject());
         return "redirect:/training/all";
     }

@@ -33,36 +33,38 @@
     </c:if>
 
     <c:forEach items="${trainings}" var="training">
-        <div class="training-box">
-            <div class="grid grid-pad">
-                <div class="col-10-12">
-                    <h2>
-                        <c:choose>
-                            <c:when test="${fn:length(training.subject) > 35}">
-                                ${fn:substring(training.subject, 0, 33)}...
-                            </c:when>
-                            <c:otherwise>
-                                ${training.subject}
-                            </c:otherwise>
-                        </c:choose>
-                    </h2>
-                    <p>
-                        <c:choose>
-                            <c:when test="${fn:length(training.description) > 270}">
-                                ${fn:substring(training.description, 0, 268)}...
-                            </c:when>
-                            <c:otherwise>
-                                ${training.description}
-                            </c:otherwise>
-                        </c:choose>
-                    </p>
-                </div>
-                <div class="col-2-12 training-date-time-box">
-                    <h3 class="training-date-time"><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-                                                                   value="${training.fromDate}"/></h3>
+        <a href="<c:url value="/training/${training.id}"/>">
+            <div class="training-box">
+                <div class="grid grid-pad">
+                    <div class="col-10-12">
+                        <h2>
+                            <c:choose>
+                                <c:when test="${fn:length(training.subject) > 35}">
+                                    ${fn:substring(training.subject, 0, 33)}...
+                                </c:when>
+                                <c:otherwise>
+                                    ${training.subject}
+                                </c:otherwise>
+                            </c:choose>
+                        </h2>
+                        <p>
+                            <c:choose>
+                                <c:when test="${fn:length(training.description) > 270}">
+                                    ${fn:substring(training.description, 0, 268)}...
+                                </c:when>
+                                <c:otherwise>
+                                    ${training.description}
+                                </c:otherwise>
+                            </c:choose>
+                        </p>
+                    </div>
+                    <div class="col-2-12 training-date-time-box">
+                        <h3 class="training-date-time"><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+                                                                       value="${training.fromDate}"/></h3>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </c:forEach>
 </div>
 <tag:footer/>
