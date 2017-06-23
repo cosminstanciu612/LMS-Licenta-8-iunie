@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-2-3">
 
-                    <form:select path="domains" items="${domains}" itemValue="id" itemLabel="name"/>
+                    <form:select path="domains" items="${domains}" itemValue="id" itemLabel="name" multiple="true" />
                 </div>
             </div>
 

@@ -25,9 +25,7 @@ public class User {
     private String phoneNumber;
 
     @OneToMany
-    private List<Training> trainingsHeld;
-    @OneToMany
-    private List<Training> trainingsParticipated;
+    private List<Training> trainingsHeld = new ArrayList<>();
 
     @ManyToOne
     private Department department;
@@ -42,8 +40,6 @@ public class User {
     private List<UserRole> role = new ArrayList<>(0);
 
     public User() {
-        this.trainingsHeld = new ArrayList<Training>();
-        this.trainingsParticipated = new ArrayList<Training>();
     }
 
     public User(String email, String password) {
@@ -59,23 +55,19 @@ public class User {
         this.department = department;
     }
 
-    public User(int id, String email, String firstName, String lastName, String phoneNumber, List<Training> trainingsHeld, List<Training> trainingsParticipated) {
+    public User(int id, String email, String firstName, String lastName, String phoneNumber, List<Training> trainingsHeld) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.trainingsHeld = trainingsHeld;
-        this.trainingsParticipated = trainingsParticipated;
     }
 
     public void addTrainingHeld(Training training) {
         trainingsHeld.add(training);
     }
 
-    public void addTrainingParticipated(Training training) {
-        trainingsParticipated.add(training);
-    }
 
     public int getId() {
         return id;
@@ -123,14 +115,6 @@ public class User {
 
     public void setTrainingsHeld(List<Training> trainingsHeld) {
         this.trainingsHeld = trainingsHeld;
-    }
-
-    public List<Training> getTrainingsParticipated() {
-        return trainingsParticipated;
-    }
-
-    public void setTrainingsParticipated(List<Training> trainingsParticipated) {
-        this.trainingsParticipated = trainingsParticipated;
     }
 
     public Department getDepartment() {

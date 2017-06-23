@@ -1,8 +1,11 @@
 package ro.ubbcluj.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ro.ubbcluj.dao.TrainingDAO;
+import ro.ubbcluj.dao.UserDAO;
 import ro.ubbcluj.domain.Training;
 import ro.ubbcluj.domain.TrainingDomain;
 import ro.ubbcluj.domain.User;
@@ -19,6 +22,9 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Autowired
     private TrainingDAO trainingDAO;
+
+    @Autowired
+    private UserDAO userDAO;
 
     public Training getTrainingById(int id) {
         return trainingDAO.getTrainingById(id);
@@ -70,7 +76,7 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     public List<Training> getTrainingsByParticipant(User participant) {
-        return participant.getTrainingsParticipated();
+        return trainingDAO.getTrainingsByParticipant(participant);
     }
 
     public List<Training> getTrainingsByDomains(List<TrainingDomain> domains) {
@@ -102,6 +108,40 @@ public class TrainingServiceImpl implements TrainingService {
 
     public TrainingDomain getTrainingDomainById(int i) {
         return trainingDAO.getTrainingDomainById(i);
+    }
+
+    @Override
+    public User getTrainerByTraining(Training training) {
+        return trainingDAO.getTrainerByTraining(training);
+    }
+
+    @Override
+    public List<Training> getTrainingsWithoutTrainer(List<User> trainers) {
+        List<Training> trainings = trainingDAO.getAllTrainings();
+        List<Training> result = new ArrayList<>(trainings);
+
+        for (User user : trainers) {
+            for (Training training : trainings) {
+                for (Training heldTrainings : user.getTrainingsHeld()) {
+                    if (training.getId() == heldTrainings.getId()) {
+                        result.remove(training);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public void addParticipantToTraining(String trainingId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = userDAO.getUserByEmail(email);
+        Training training = trainingDAO.getTrainingById(Integer.parseInt(trainingId));
+        if (!training.getUsersJoined().contains(user)) {
+            training.getUsersJoined().add(user);
+            trainingDAO.editTraining(training);
+        }
     }
 
 }

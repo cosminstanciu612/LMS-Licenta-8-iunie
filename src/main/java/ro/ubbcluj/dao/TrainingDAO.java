@@ -3,6 +3,7 @@ package ro.ubbcluj.dao;
 import ro.ubbcluj.domain.Department;
 import ro.ubbcluj.domain.Training;
 import ro.ubbcluj.domain.TrainingDomain;
+import ro.ubbcluj.domain.User;
 
 import java.util.List;
 
@@ -23,4 +24,8 @@ public interface TrainingDAO {
     List<TrainingDomain> getAllDomains();
 
     TrainingDomain getTrainingDomainById(int id);
+
+    User getTrainerByTraining(Training training);
+
+    List<Training> getTrainingsByParticipant(User participant);
 }

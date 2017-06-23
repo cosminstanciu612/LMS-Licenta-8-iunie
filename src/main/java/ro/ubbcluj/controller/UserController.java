@@ -9,7 +9,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ro.ubbcluj.domain.Department;
+import ro.ubbcluj.domain.Training;
 import ro.ubbcluj.domain.User;
+import ro.ubbcluj.service.TrainingService;
 import ro.ubbcluj.service.UserService;
 import ro.ubbcluj.util.DepartmentEditor;
 
@@ -39,6 +41,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+    @Autowired
+    private TrainingService trainingService;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Department.class, new DepartmentEditor(userService));
@@ -53,7 +59,9 @@ public class UserController {
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public String getUserById(Model model, @PathVariable(value = "userId") int userId) {
-        model.addAttribute("user", userService.getUserById(userId));
+        User user = userService.getUserById(userId);
+        model.addAttribute("user", user);
+        model.addAttribute("trainingsParticipated", trainingService.getTrainingsByParticipant(user));
         return USERS_DETAILS;
     }
 
@@ -66,7 +74,6 @@ public class UserController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addUser(RedirectAttributes redirectAttributes, @ModelAttribute("userForm") User user, BindingResult bindingResult) {
-//        TODO: check why the department is not added to the new user !
         userService.addUser(user);
         redirectAttributes.addFlashAttribute("newUserAdded", user.getEmail());
         return "redirect:/user/all";
@@ -108,5 +115,31 @@ public class UserController {
         model.addAttribute("departments", userService.getAllDepartments());
         return "usersList";
 
+    }
+
+    @RequestMapping(value = "/add-training/{userId}", method = RequestMethod.GET)
+    public String getNotAssignedTrainings(@PathVariable("userId") String userId, Model model) {
+        model.addAttribute("userId", userId);
+        model.addAttribute("trainings", trainingService.getTrainingsWithoutTrainer(userService.getAllTrainers()));
+        model.addAttribute("trainingsWithoutTrainer", true);
+        return "trainingsList";
+    }
+
+    @RequestMapping(value = "/add-training/{userId}/{trainingId}", method = RequestMethod.GET)
+    public String addTrainingToTrainer(@PathVariable("userId") String userId, @PathVariable("trainingId") String trainingId) {
+        User user = userService.getUserById(Integer.parseInt(userId));
+        Training training = trainingService.getTrainingById(Integer.parseInt(trainingId));
+        user.getTrainingsHeld().add(training);
+        userService.editUser(user);
+        return "redirect:/user/edit/" + userId;
+    }
+
+    @RequestMapping(value = "/delete-training/{userId}/{trainingId}", method = RequestMethod.GET)
+    public String deleteTrainingFromTrainer(@PathVariable("userId") String userId, @PathVariable("trainingId") String trainingId) {
+        Training training =trainingService.getTrainingById(Integer.parseInt(trainingId));
+        User user = userService.getUserById(Integer.parseInt(userId));
+        user.getTrainingsHeld().remove(training);
+        userService.editUser(user);
+        return "redirect:/user/edit/" + userId;
     }
 }

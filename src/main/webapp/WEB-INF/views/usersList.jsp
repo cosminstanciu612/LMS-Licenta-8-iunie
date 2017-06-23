@@ -68,6 +68,9 @@
                     <div class="cell">
                             <%--Empty tag for delete button--%>
                     </div>
+                    <div class="cell">
+                        <%--Empty tag for add training--%>
+                    </div>
 
                 </div>
                 <c:forEach items="${users}" var="user">
@@ -100,6 +103,9 @@
                                 <a class="delete-button" href="<c:url value="/user/delete/${user.id}"/> ">
                                     <img src="/img/delete-icon.png"/>
                                 </a>
+                            </div>
+                            <div class="cell">
+                                <a href="<c:url value="/user/add-training/${user.id}"/>">Add training</a>
                             </div>
                         </div>
                     </c:if>

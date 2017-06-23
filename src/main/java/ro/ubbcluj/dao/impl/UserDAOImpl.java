@@ -25,7 +25,7 @@ public class UserDAOImpl implements UserDAO {
 
     public List<User> getAllUsers() {
         Session session = sessionFactory.getCurrentSession();
-        return (List<User>) session.createQuery("FROM User").list();
+        return (List<User>) session.createQuery("FROM User as u order by u.lastName").list();
     }
 
     public User getUserById(int id) {
@@ -88,6 +88,12 @@ public class UserDAOImpl implements UserDAO {
         Query query = session.createQuery("from User as u where u.email = :email");
         query.setParameter("email", email);
         return (User) query.uniqueResult();
+    }
+
+    @Override
+    public List<User> getAllTrainers() {
+        Session session = sessionFactory.getCurrentSession();
+        return (List<User>) session.createQuery("from User as u where u.trainingsHeld is not empty").list();
     }
 
     private String getQuery(String searchTerm, int departmentId) {

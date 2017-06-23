@@ -97,11 +97,11 @@
         <br>
     </c:if>
 
-    <c:if test="${not empty user.trainingsParticipated}">
+    <c:if test="${not empty trainingsParticipated}">
         <div class="subtitle">
             <c:out value="Participated at trainings:"/>
         </div>
-        <c:forEach items="${user.trainingsParticipated}" var="trainingParticipated">
+        <c:forEach items="${trainingsParticipated}" var="trainingParticipated">
             <div class="training-box">
                 <div class="left-border-bold ">
 

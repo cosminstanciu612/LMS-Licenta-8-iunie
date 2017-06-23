@@ -101,9 +101,9 @@ public class MockDAOImpl implements MockDAO {
         u1.addTrainingHeld(t1);
         u1.addTrainingHeld(t1);
         u1.addTrainingHeld(t1);
-        u2.addTrainingParticipated(t1);
-        u2.addTrainingParticipated(t1);
-        u2.addTrainingParticipated(t1);
+//        u2.addTrainingParticipated(t1);
+//        u2.addTrainingParticipated(t1);
+//        u2.addTrainingParticipated(t1);
     }
 
     public List<User> getAllUsers() {

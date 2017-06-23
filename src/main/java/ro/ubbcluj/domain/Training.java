@@ -29,6 +29,9 @@ public class Training {
 
     private Date addedOn;
 
+    @ManyToMany
+    private List<User> usersJoined;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date fromDate;
     private double duration;
@@ -74,6 +77,10 @@ public class Training {
         this.fromDate = fromDate;
         this.extraDetailsList = extraDetailsList;
         addedOn = new Date();
+    }
+
+    public void addUser(User user) {
+        usersJoined.add(user);
     }
 
     public void addExtraDetails(ExtraDetails extraDetails) {
@@ -150,6 +157,14 @@ public class Training {
 
     public void setDuration(double duration) {
         this.duration = duration;
+    }
+
+    public List<User> getUsersJoined() {
+        return usersJoined;
+    }
+
+    public void setUsersJoined(List<User> usersJoined) {
+        this.usersJoined = usersJoined;
     }
 }
 

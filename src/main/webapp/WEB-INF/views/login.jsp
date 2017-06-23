@@ -14,34 +14,34 @@
 </head>
 <body>
 <tag:header/>
-
-<form:form method="POST" action="/lms/login" commandName="loginForm">
-    <div class="login-form">
-        <div class="grid grid-pad">
-            <div class="col-1-3">
-                <form:label path="email">Email</form:label>
+<div class="container">
+    <form:form method="POST" action="/lms/login" commandName="loginForm">
+        <div class="login-form">
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="email">Email</form:label>
+                </div>
+                <div class="col-2-3">
+                    <form:input path="email"/>
+                </div>
             </div>
-            <div class="col-2-3">
-                <form:input path="email"/>
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    <form:label path="password">Password</form:label>
+                </div>
+                <div class="col-2-3">
+                    <form:password path="password"/>
+                </div>
+            </div>
+
+            <div class="grid grid-pad">
+                <div class="col-1-4">
+                    <input class="button-blue" type="submit" value="Login"/>
+                </div>
             </div>
         </div>
-        <div class="grid grid-pad">
-            <div class="col-1-3">
-                <form:label path="password">Password</form:label>
-            </div>
-            <div class="col-2-3">
-                <form:password path="password"/>
-            </div>
-        </div>
-
-        <div class="grid grid-pad">
-            <div class="col-1-4">
-                <input class="button-blue" type="submit" value="Login"/>
-            </div>
-        </div>
-    </div>
-</form:form>
-
+    </form:form>
+</div>
 <tag:footer/>
 </body>
 </html>

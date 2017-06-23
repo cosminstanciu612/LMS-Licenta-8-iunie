@@ -21,6 +21,9 @@
         <li class="menu-link">
             <a href="<c:url value="/user/all"/>">contacts</a>
         </li>
+        <li class="menu-link">
+            <a href="<c:url value="/reports"/>">Reports</a>
+        </li>
 
         <sec:authorize var="loggedIn" access="isAuthenticated()"/>
         <li class="menu-link">

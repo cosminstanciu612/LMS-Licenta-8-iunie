@@ -30,4 +30,6 @@ public interface UserService {
     void setInfoMessage(String infoMessage);
 
     List<User> searchUsers(String searchTerm, String department);
+
+    List<User> getAllTrainers();
 }

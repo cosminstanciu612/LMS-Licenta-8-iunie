@@ -61,6 +61,11 @@
                     <div class="col-2-12 training-date-time-box">
                         <h3 class="training-date-time"><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
                                                                        value="${training.fromDate}"/></h3>
+                        <c:if test="${trainingsWithoutTrainer}">
+                            <h3>
+                                <a href="<c:url value="/user/add-training/${userId}/${training.id}"/>">Select</a>
+                            </h3>
+                        </c:if>
                     </div>
                 </div>
             </div>

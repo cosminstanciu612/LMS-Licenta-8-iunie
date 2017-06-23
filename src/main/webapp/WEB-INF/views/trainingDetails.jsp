@@ -5,6 +5,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tag" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <head>
@@ -17,8 +18,22 @@
 </head>
 <body>
 <tag:header/>
+<sec:authentication property="principal.username" var="authenticatedUser"/>
+<c:set var="hasJoined" value="false"/>
+<c:if test="${trainer.email eq authenticatedUser}">
+    <c:set var="hasJoined" value="true"/>
+</c:if>
+<c:forEach items="${training.usersJoined}" var="userJoined">
+    <c:if test="${userJoined.email eq authenticatedUser}">
+        <c:set var="hasJoined" value="true"/>
+    </c:if>
+</c:forEach>
+
 <div class="container">
     <h1 class="border-bottom"><c:out value="${training.subject}"/></h1>
+    <c:if test="${hasJoined eq 'false'}">
+        <a class="button-blue" href="<c:url value="/training/add-user/${training.id}"/>">Join</a>
+    </c:if>
     <p>
         Date: <fmt:formatDate type="both"
                               dateStyle="short" timeStyle="short" value="${training.fromDate}"/>
@@ -26,6 +41,22 @@
         (added on <fmt:formatDate type="both"
                                   dateStyle="short" timeStyle="short" value="${training.addedOn}"/>)
     </p>
+    <p>Duration: ${training.duration}</p>
+    <br>
+    <c:if test="${not empty trainer}"> Held by:
+        <p>
+            <c:choose>
+                <c:when test="${not trainer.deleted}">
+                    <a href="<c:url value="/user/${trainer.id}"/>">
+                            ${trainer.firstName}&nbsp;${trainer.lastName}
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    ${trainer.firstName}&nbsp;${trainer.lastName} (Not an employee anymore)
+                </c:otherwise>
+            </c:choose>
+        </p>
+    </c:if>
     <br>
     <br>
     <p>

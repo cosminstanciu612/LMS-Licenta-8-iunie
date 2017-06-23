@@ -37,20 +37,7 @@ padding: 8px 0;
 }
 
 
-.button-blue {
-    background-color: #26ade4;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    height: inherit !important;
-}
+
 
 .bottom-right {
     position:absolute;

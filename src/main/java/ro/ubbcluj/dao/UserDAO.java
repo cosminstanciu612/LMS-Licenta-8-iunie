@@ -27,4 +27,6 @@ public interface UserDAO {
     List searchUsers(String searchTerm, int departmentId);
 
     User getUserByEmail(String email);
+
+    List<User> getAllTrainers();
 }

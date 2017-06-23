@@ -26,4 +26,11 @@ public interface TrainingService {
     List<TrainingDomain> getAllDomains();
 
     TrainingDomain getTrainingDomainById(int i);
+
+    User getTrainerByTraining(Training training);
+
+    List<Training> getTrainingsWithoutTrainer(List<User> trainers);
+
+    void addParticipantToTraining(String trainingId);
+
 }

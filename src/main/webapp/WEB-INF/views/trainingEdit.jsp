@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-2-3">
 
-                    <form:select path="domains" items="${domains}" itemValue="id" itemLabel="name"/>
+                    <form:select id="domain" path="domains" items="${domains}" itemValue="id" itemLabel="name" multiple="true"/>
                 </div>
             </div>
 
@@ -74,5 +74,10 @@
     </form:form>
 </div>
 <tag:footer/>
+<script>
+    <c:forEach items="${trainingForm.domains}" var="domain">
+        document.getElementById('domain').value = ${domain.id};
+    </c:forEach>
+</script>
 </body>
 </html>

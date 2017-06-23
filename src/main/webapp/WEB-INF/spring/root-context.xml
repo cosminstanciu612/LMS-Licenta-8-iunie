@@ -46,12 +46,13 @@
         <security:intercept-url pattern="/user/**" access="hasRole('USER')"/>
         <security:intercept-url pattern="/training/**" access="hasRole('USER')"/>
         <security:intercept-url pattern="/my-account/**" access="hasRole('USER')"/>
+        <security:intercept-url pattern="/reports/**" access="hasRole('ADMIN')"/>
         <security:form-login login-page='/login'
                              default-target-url="/"
                              authentication-failure-url="/login"
                              username-parameter="email"
                              password-parameter="password"/>
-        <!--<security:access-denied-handler error-page="/accessDenied"/>-->
+        <security:access-denied-handler error-page="/accessDenied"/>
     </security:http>
 
     <security:authentication-manager>

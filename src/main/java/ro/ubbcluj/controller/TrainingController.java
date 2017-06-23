@@ -41,6 +41,7 @@ public class TrainingController {
     public String getTrainingById(Model model, @PathVariable("id") int id) {
         Training training = trainingService.getTrainingById(id);
         model.addAttribute("training", training);
+        model.addAttribute("trainer", trainingService.getTrainerByTraining(training));
         return "trainingDetails";
     }
 //    @RequestMapping(value = "/TESTMAIL")
@@ -63,25 +64,29 @@ public class TrainingController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addUser(RedirectAttributes redirectAttributes, @ModelAttribute("trainingForm") Training training, BindingResult bindingResult) {
-//        TODO: check why the department is not added to the new user !
         trainingService.addTraining(training);
         redirectAttributes.addFlashAttribute("newTrainingAdded", training.getSubject());
         return "redirect:/training/all";
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String editTrainingForm(Model model) {
-        model.addAttribute("trainingForm", new Training());
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editTrainingForm(Model model, @PathVariable("id") String id) {
+        model.addAttribute("trainingForm", trainingService.getTrainingById(Integer.parseInt(id)));
         model.addAttribute("domains", trainingService.getAllDomains());
-        return "trainingAdd";
+        return "trainingEdit";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editUser(RedirectAttributes redirectAttributes, @ModelAttribute("trainingForm") Training training, BindingResult bindingResult) {
-//        TODO: check why the department is not added to the new user !
+    public String editTraining(RedirectAttributes redirectAttributes, @ModelAttribute("trainingForm") Training training, BindingResult bindingResult) {
         trainingService.editTraining(training);
         redirectAttributes.addFlashAttribute("newTrainingAdded", training.getSubject());
         return "redirect:/training/all";
+    }
+
+    @RequestMapping(value = "/add-user/{trainingId}", method = RequestMethod.GET)
+    public String addUser(@PathVariable("trainingId") String trainingId, Model model) {
+        trainingService.addParticipantToTraining(trainingId);
+        return "redirect:/training/" + trainingId;
     }
 
 

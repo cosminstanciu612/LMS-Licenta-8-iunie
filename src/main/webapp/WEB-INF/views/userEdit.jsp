@@ -71,6 +71,26 @@
                     <form:select id="department" path="department" items="${departments}" itemValue="id" itemLabel="name"/>
                 </div>
             </div>
+            <div class="grid grid-pad">
+                <div class="col-1-3">
+                    Trainings
+                </div>
+                <div class="col-2-3">
+                    <ul>
+                        <li>
+                        <c:forEach items="${userEdit.trainingsHeld}" var="trainingsHeld">
+                            <a class="delete-button" href="<c:url value="/user/delete-training/${userEdit.id}/${trainingsHeld.id}"/> ">
+                                <img src="/img/delete-icon.png"/>
+                            </a>${trainingsHeld.subject}
+                        </c:forEach>
+                        </li>
+                        <li>
+                            <a href="<c:url value="/user/add-training/${userEdit.id}"/>">Add training</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
 
             <div class="grid grid-pad">
                 <div class="col-1-4">

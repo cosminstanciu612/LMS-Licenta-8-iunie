@@ -51,11 +51,11 @@ public class UserServiceImpl implements UserService {
     public int getUsersCountForTraining(Training training) {
         List<User> allUsers = getAllUsers();
         int userCount = 0;
-        for (User user : allUsers) {
-            if (user.getTrainingsParticipated().contains(training)) {
-                userCount++;
-            }
-        }
+//        for (User user : allUsers) {
+//            if (user.getTrainingsParticipated().contains(training)) {
+//                userCount++;
+//            }
+//        } todo: re-implement this method
         return userCount;
     }
 
@@ -100,6 +100,11 @@ public class UserServiceImpl implements UserService {
 
             users = userDAO.searchUsers(searchTerm, id);
         return users;
+    }
+
+    @Override
+    public List<User> getAllTrainers() {
+        return userDAO.getAllTrainers();
     }
 
     private String getRandomPassword() {
